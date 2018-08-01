@@ -1,0 +1,22 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: jmeter-workers
+  labels:
+    jmeter_mode: worker
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      jmeter_mode: worker
+  template:
+    metadata:
+      labels:
+        jmeter_mode: worker
+    spec:
+      containers:
+      - name: jmworker
+        image: localhost:5000/fcqa/jmeter-worker
+        ports:
+        - containerPort: 1099
+        - containerPort: 50000
