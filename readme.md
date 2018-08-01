@@ -1,20 +1,20 @@
 
 ============Build, tag and push the base image============
 
-		`docker build --tag="<docker-registry>/fcqa/jmeter-base:latest"`
-		`docker push <docker-registry>/fcqa/jmeter-base:latest`
+		`docker build --tag="<docker-registry>/jmeter-base:latest"`
+		`docker push <docker-registry>/jmeter-base:latest`
 
 
 ============Build, tag and push the master image===========
 
-		`docker build --tag="<docker-registry>/fcqa/jmeter-master:latest"`
-		`docker push <docker-registry>/fcqa/jmeter-master:latest`
+		`docker build --tag="<docker-registry>/jmeter-master:latest"`
+		`docker push <docker-registry>/jmeter-master:latest`
 
 
 ============Build, tag and push the salve image:===========
 
-		`docker build --tag="<docker-registry>/fcqa/jmeter-worker:latest"` 
-		`docker push <docker-registry>/fcqa/jmeter-worker:latest`
+		`docker build --tag="<docker-registry>/jmeter-worker:latest"` 
+		`docker push <docker-registry>/jmeter-worker:latest`
 
 ====================Create Cluster=========================
 
