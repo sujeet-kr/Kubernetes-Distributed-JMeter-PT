@@ -1,4 +1,4 @@
 FROM jmeter-base:latest
-MAINTAINER sujeet.kumar@fleetcomplete.com
+MAINTAINER Sujeet Kumar <sujeet.kr@hotmail.com>
 
 EXPOSE 60000

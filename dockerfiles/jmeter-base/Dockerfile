@@ -1,5 +1,5 @@
 FROM openjdk:8-jre-slim
-MAINTAINER sujeet.kumar@fleetcomplete.com
+MAINTAINER Sujeet Kumar <sujeet.kr@hotmail.com>
 		
 ARG JMETER_VERSION=4.0
 		
