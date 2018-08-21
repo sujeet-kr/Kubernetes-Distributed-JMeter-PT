@@ -21,7 +21,7 @@
 		* make sure the cluster is created in AWS before running the shell script
 		* make sure persistance EBS volume is created for persisting InfluxDB data for Grafana, before creating the cluster
 		* TEMP: update the EBS volume's volume-id in influx-db deploy manifest
-		* Refer to https://gitlab.fleetcomplete.com/sujeet_kumar/kops-performance-testing-provisioning to create the cluster in AWS
+		* Refer to https://github.com/sujeet-kr/kops-performance-testing-provisioning to create the cluster in AWS
 		* cd to the root folder 
 		`./create_cluster.sh`
 
