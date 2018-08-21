@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: jmworker
-        image: localhost:5000/fcqa/jmeter-worker
+        image: sujeet-kumar/jmeter-worker
         ports:
         - containerPort: 1099
         - containerPort: 50000

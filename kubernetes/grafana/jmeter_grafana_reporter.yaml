@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: jmreporter
-        image: fcqa/jmeter-reporter
+        image: sujeet-kumar/jmeter-reporter
         ports:
         - containerPort: 8686
 

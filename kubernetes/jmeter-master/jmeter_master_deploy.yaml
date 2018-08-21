@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: jmmaster
-        image: localhost:5000/fcqa/jmeter-master
+        image: sujeet-kumar/jmeter-master
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "while true; do sleep 30; done;" ]
         volumeMounts:

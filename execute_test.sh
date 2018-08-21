@@ -20,7 +20,7 @@ echo
 
 read -p 'Enter path to the root of the Performance testing framework : ' frameworkPath
 echo
-read -p 'Enter path to the Jmeter test file (.jmx) : ' jmx
+read -p 'Enter the Jmeter test file name (.jmx) : ' jmx
 echo
 read -p 'Enter Rewrite existing framework Y/N : ' rewriteFrameworkFlag
 echo

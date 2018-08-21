@@ -20,6 +20,9 @@ spec:
           volumeMounts:
           - name: config-volume
             mountPath: /etc/influxdb
+          - name: persistant-volume
+            mountPath: /var/lib/influxdb
+
           ports:
             - containerPort: 8083
               name: influx
@@ -31,3 +34,7 @@ spec:
       - name: config-volume
         configMap:
          name: influxdb-config
+      - name: persistant-volume
+        awsElasticBlockStore:
+          volumeID: <volume-id-for-Persistant-EBS>
+          fsType: ext4

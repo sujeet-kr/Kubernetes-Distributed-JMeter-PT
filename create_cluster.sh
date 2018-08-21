@@ -71,19 +71,19 @@ kubectl create -n $thenamespace -f $working_dir/kubernetes/jmeter-master/jmeter_
 
 kubectl create -n $thenamespace -f $working_dir/kubernetes/jmeter-master/jmeter_master_deploy.yaml
 
-# echo "Creating Influxdb Deployment Service"
+echo "Creating Influxdb Deployment Service"
 
-# kubectl create -n $thenamespace -f $working_dir/kubernetes/influxdb/jmeter_influxdb_configmap.yaml
+kubectl create -n $thenamespace -f $working_dir/kubernetes/influxdb/jmeter_influxdb_configmap.yaml
 
-# kubectl create -n $thenamespace -f $working_dir/kubernetes/influxdb/jmeter_influxdb_deploy.yaml
+kubectl create -n $thenamespace -f $working_dir/kubernetes/influxdb/jmeter_influxdb_deploy.yaml
 
-# kubectl create -n $thenamespace -f $working_dir/kubernetes/influxdb/jmeter_influxdb_svc.yaml
+kubectl create -n $thenamespace -f $working_dir/kubernetes/influxdb/jmeter_influxdb_svc.yaml
 
-# echo "Creating Grafana Deployment"
+echo "Creating Grafana Deployment"
 
-# kubectl create -n $thenamespace -f $working_dir/kubernetes/grafana/jmeter_grafana_deploy.yaml
+kubectl create -n $thenamespace -f $working_dir/kubernetes/grafana/jmeter_grafana_deploy.yaml
 
-# kubectl create -n $thenamespace -f $working_dir/kubernetes/grafana/jmeter_grafana_svc.yaml
+kubectl create -n $thenamespace -f $working_dir/kubernetes/grafana/jmeter_grafana_svc.yaml
 
 echo "Displaying all Objects present in $thenamespace "
 
