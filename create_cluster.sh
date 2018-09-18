@@ -20,31 +20,34 @@ kubectl get namespaces | grep -v NAME | awk '{print $1}'
 
 echo
 
-echo "Enter a unique namespace value"
+echo "Enter a namespace value"
 read thenamespace
 echo
 
 #Check If namespace exists
-
 kubectl get namespace $thenamespace > /dev/null 2>&1
 
-if [ $? -eq 0 ]
+if [ $? -gt 0 ]
 then
-  echo "Namespace $thenamespace already exists, please select a unique name"
-  echo "Current namespaces in the kubernetes cluster"
+  echo
+  echo "Creating Namespace: $thenamespace"
+
+  kubectl create namespace $thenamespace
+
+  echo "Namspace $thenamespace has been created"
+  echo
   sleep 2
 
- kubectl get namespaces | grep -v NAME | awk '{print $1}'
-  exit 1
+  kubectl get namespaces | grep -v NAME | awk '{print $1}'
+  echo
 fi
 
+echo "Creating Persistent Volume"
+kubectl create -f $working_dir/kubernetes/persistent-volume/persistent-vol.yaml
 echo
-echo "Creating Namespace: $thenamespace"
 
-kubectl create namespace $thenamespace
-
-echo "Namspace $thenamespace has been created"
-
+echo "Creating Persistent Volume Claim"
+kubectl create -n $thenamespace -f $working_dir/kubernetes/persistent-volume/persistent-vol-claim.yaml
 echo
 
 echo "Creating Jmeter Worker nodes"
