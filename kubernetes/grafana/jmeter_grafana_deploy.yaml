@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: grafana/grafana
+        image: 011767259744.dkr.ecr.us-east-2.amazonaws.com/jmeter-grafana
         ports:
         - containerPort: 3000
           protocol: TCP
@@ -30,6 +30,5 @@ spec:
         - name: GF_AUTH_ANONYMOUS_ORG_ROLE
           value: Admin
         - name: GF_SERVER_ROOT_URL
-          # If you're only using the API Server proxy, set this value instead:
           # value: /api/v1/namespaces/kube-system/services/monitoring-grafana/proxy
           value: /
