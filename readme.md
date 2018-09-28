@@ -1,20 +1,32 @@
 
 ============Build, tag and push the base image============
 
-		`docker build --tag="<docker-registry>/sujeet-kumar/jmeter-base:latest"`
-		`docker push <docker-registry>/sujeet-kumar/jmeter-base:latest`
+		`docker build --tag="<docker-registry>/jmeter-base:latest"`
+		`docker push <docker-registry>/jmeter-base:latest`
 
 
 ============Build, tag and push the master image===========
 
-		`docker build --tag="<docker-registry>/sujeet-kumar/jmeter-master:latest"`
-		`docker push <docker-registry>/sujeet-kumar/jmeter-master:latest`
+		`docker build --tag="<docker-registry>/jmeter-master:latest"`
+		`docker push <docker-registry>/jmeter-master:latest`
 
 
 ============Build, tag and push the worker image:===========
 
-		`docker build --tag="<docker-registry>/sujeet-kumar/jmeter-worker:latest"` 
-		`docker push <docker-registry>/sujeet-kumar/jmeter-worker:latest`
+		`docker build --tag="<docker-registry>/jmeter-worker:latest"` 
+		`docker push <docker-registry>/jmeter-worker:latest`
+
+
+============Build, tag and push the grafana image:===========
+
+		`docker build --tag="<docker-registry>/jmeter-grafana:latest"` 
+		`docker push <docker-registry>/jmeter-grafana:latest`
+
+
+============Update the docker registry in the deploy files:===========
+		`jmeter-master`
+		`jmeter-worker`
+		`jmeter-grafana`
 
 ====================Create Cluster=========================
 
