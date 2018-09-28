@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: 011767259744.dkr.ecr.us-east-2.amazonaws.com/jmeter-grafana
+        image: sujeet-kumar/jmeter-grafana
         ports:
         - containerPort: 3000
           protocol: TCP
