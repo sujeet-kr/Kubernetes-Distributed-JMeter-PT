@@ -24,10 +24,11 @@
 
 
 ============Update the docker registry in the deploy files:===========
-		`jmeter-master`
+		
+		`jmeter-master` 
 		`jmeter-worker`
-		`jmeter-grafana`
-
+		`jmeter-grafana`		
+		
 ====================Create Cluster=========================
 
 		* make sure the cluster is created in AWS before running the shell script
