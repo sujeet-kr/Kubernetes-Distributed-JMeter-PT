@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-clusterName="sujeet.k8s.local"
+clusterName="nameOfCluster.k8s.local"
 pvTagName="PVPerfTesting"
 pvTagValue="InfluxDBPV"
 awsRegion="us-east-2"
