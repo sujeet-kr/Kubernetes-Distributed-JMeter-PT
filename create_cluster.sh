@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
+clusterName="sujeet.k8s.local"
+pvTagName="PVPerfTesting"
+pvTagValue="InfluxDBPV"
+awsRegion="us-east-2"
+
 working_dir=`pwd`
+
+thePVVolIDValue=`aws ec2 describe-volumes  --filters Name=tag:$pvTagName,Values=$pvTagValue Name=tag:KubernetesCluster,Values=$clusterName --query 'Volumes[*].{ID:VolumeId}' --region $awsRegion --output text`
+echo "Persisstent value is $thePVVolIDValue"
 
 echo "Verify kubectl installation"
 
@@ -43,7 +51,8 @@ then
 fi
 
 echo "Creating Persistent Volume"
-kubectl create -f $working_dir/kubernetes/persistent-volume/persistent-vol.yaml
+cat $working_dir/kubernetes/persistent-volume/persistent-vol.yaml | sed s/\$\$PVVolumeID/$thePVVolIDValue/ | kubectl create -f -
+# kubectl create -f $working_dir/kubernetes/persistent-volume/persistent-vol.yaml
 echo
 
 echo "Creating Persistent Volume Claim"
@@ -95,3 +104,11 @@ echo
 kubectl get -n $thenamespace all
 
 echo namespace = $thenamespace > $working_dir/thenamespace
+
+echo "Creating the Database..."
+
+./create_db.sh
+
+echo
+echo "Grafana Dashboard URL for the Performance Testing Infra"
+echo `kubectl -n $thenamespace describe svc jmeter-grafana | grep "LoadBalancer Ingress" | awk '{print $3}'`

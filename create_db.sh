@@ -10,7 +10,17 @@ thenamespace=`awk '{print $NF}' $working_dir/thenamespace`
 echo "Creating Influxdb Jmeter Database"
 
 ##Wait until Influxdb Deployment is up and running
-##influxdb_status=`kubectl get po -n $thenamespace | grep influxdb-jmeter | awk '{print $2}' | grep Running
+influxdb_status=`kubectl get po -n $thenamespace | grep influxdb-jmeter | awk '{print $2}'`
+
+while [ "$influxdb_status" != "1/1" ]; do
+   sleep 5s
+   echo "Waiting for InfluxDB Pod to be ready ..."
+   influxdb_status=`kubectl get po -n $thenamespace | grep influxdb-jmeter | awk '{print $2}'`
+done
+
+echo "InfluxDB Pod Status"
+echo `kubectl get po -n $thenamespace | grep influxdb-jmeter`
+echo
 
 influxdb_pod=`kubectl get po -n $thenamespace | grep influxdb-jmeter | awk '{print $1}'`
 kubectl exec -it -n $thenamespace $influxdb_pod -- influx -execute 'CREATE DATABASE jmeter'
