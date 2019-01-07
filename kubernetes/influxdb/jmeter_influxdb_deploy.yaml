@@ -15,8 +15,25 @@ spec:
         app: influxdb-jmeter
     spec:
       containers:
-        - image: influxdb
+        - image: sujeet-kumar/jmeter-influxdb
           name: influxdb
+          env:
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: s3-secret
+                key: id
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: s3-secret
+                key: skey
+          - name: AWS_DEFAULT_REGION
+            valueFrom:
+              secretKeyRef:
+                name: s3-secret
+                key: region
+
           volumeMounts:
           - name: config-volume
             mountPath: /etc/influxdb
