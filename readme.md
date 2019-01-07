@@ -46,3 +46,7 @@
 		* cd to the root folder
 		`./stop_test.sh`
 
+=====================Create value for secret==========================
+
+		* to create base64 encoded string use
+		`printf "%s" 'test to convert' | base64`
