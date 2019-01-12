@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-jmeter_bin_address='/jmeter/apache-jmeter-4.0/bin'
+jmeter_bin_address='/jmeter/apache-jmeter-5.0/bin'
 
 working_dir=`pwd`
 

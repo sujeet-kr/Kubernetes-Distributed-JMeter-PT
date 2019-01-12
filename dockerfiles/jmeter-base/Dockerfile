@@ -1,7 +1,7 @@
 FROM openjdk:8-jre-slim
 MAINTAINER Sujeet Kumar <sujeet.kr@hotmail.com>
 		
-ARG JMETER_VERSION=4.0
+ARG JMETER_VERSION=5.0
 		
 RUN apt-get clean && \
     apt-get update && \
