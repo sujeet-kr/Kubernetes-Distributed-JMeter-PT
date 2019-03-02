@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-jmeter_bin_address='/jmeter/apache-jmeter-5.0/bin'
+# jmeter_bin_address='/jmeter/apache-jmeter-5.0/bin'
+framework_base_location_pods='/'
 
 working_dir=`pwd`
 
@@ -20,7 +21,7 @@ echo
 
 read -p 'Enter path to the root of the Performance testing framework : ' frameworkPath
 echo
-read -p 'Enter the Jmeter test file name (.jmx) : ' jmx
+read -p 'Enter the Main test file name (.jmx for JMeter || .yml for Taurus) : ' masterTestFile
 echo
 read -p 'Enter Rewrite existing framework Y/N : ' rewriteFrameworkFlag
 echo
@@ -47,7 +48,7 @@ worker_pods=`kubectl get po -n ${thenamespace} | grep jmeter-worker | awk '{prin
 echo "Test will be executed from : "
 
 frameworkFolder=$(basename ${frameworkPath})
-echo "${master_pod}:/${jmeter_bin_address}/${frameworkFolder}"
+echo "${master_pod}:/${framework_base_location_pods}${frameworkFolder}"
 
 echo
 echo "Worker pods in use for the test: "
@@ -57,7 +58,7 @@ echo
 echo "Checking if test framework is already available in the pod"
 echo
 
-frameworkFolderExists=`kubectl exec -it -n ${thenamespace} ${master_pod} -- /bin/bash -c "if [ -d '/${jmeter_bin_address}/${frameworkFolder}' ]; \
+frameworkFolderExists=`kubectl exec -it -n ${thenamespace} ${master_pod} -- /bin/bash -c "if [ -d '/${framework_base_location_pods}${frameworkFolder}' ]; \
         then echo 'TRUE'; else echo 'FALSE'; fi"`
 
 echo "Framework Folder Exists: " ${frameworkFolderExists}
@@ -66,11 +67,11 @@ echo
 
 if [[ "${frameworkFolderExists}" == *FALSE* || "${rewriteFrameworkFlag}" == "Y" ]]
 then 
-        kubectl cp ${frameworkPath} -n ${thenamespace} ${master_pod}:${jmeter_bin_address} 
+        kubectl cp ${frameworkPath} -n ${thenamespace} ${master_pod}:${framework_base_location_pods} 
         echo 'Framework copied to Master Pod: ' ${master_pod}
         echo
         for eachPod in ${worker_pods}; do
-                kubectl cp ${frameworkPath} -n ${thenamespace} ${eachPod}:${jmeter_bin_address}; echo "Framework copied to Worker Pod: " ${eachPod}; echo;
+                kubectl cp ${frameworkPath} -n ${thenamespace} ${eachPod}:${framework_base_location_pods}; echo "Framework copied to Worker Pod: " ${eachPod}; echo;
         done
 fi
 
@@ -92,5 +93,6 @@ echo "Starting Performance Tests"
 echo "###################################################################"
 echo
 
-kubectl exec -it -n ${thenamespace} ${master_pod} -- /jmeter/load_test ${jmeter_bin_address}/${frameworkFolder}/${jmx}
+kubectl exec -it -n ${thenamespace} ${master_pod} -- /jmeter/load_test ${framework_base_location_pods}${frameworkFolder}/${masterTestFile}
+
 
